@@ -31,67 +31,49 @@ body{
     #1e3a8a,
     #020617);
 
-    z-index:1000;
+    z-index:2000;
 }
 
 .logo{
-    font-size:80px;
-    margin-bottom:15px;
-
+    font-size:90px;
+    margin-bottom:20px;
     animation:floatShip 2s ease-in-out infinite;
 }
 
 @keyframes floatShip{
-
-    0%{
-        transform:translateY(0px);
-    }
-
-    50%{
-        transform:translateY(-10px);
-    }
-
-    100%{
-        transform:translateY(0px);
-    }
+    0%{transform:translateY(0);}
+    50%{transform:translateY(-12px);}
+    100%{transform:translateY(0);}
 }
 
 .screen h1{
-
-    color:#00e5ff;
-
     font-size:3rem;
-
-    margin-bottom:15px;
+    color:#00e5ff;
 
     text-shadow:
     0 0 10px #00e5ff,
     0 0 20px #00e5ff,
     0 0 40px #00e5ff;
+
+    margin-bottom:15px;
 }
 
 .subtitle{
-
     line-height:1.8;
-    font-size:1.1rem;
-
     margin-bottom:25px;
 }
 
 .controls{
-    margin-top:20px;
+    margin-top:15px;
 }
 
 .controls p{
-    margin-top:5px;
+    margin-top:6px;
 }
 
 .developer{
-
-    margin-top:30px;
-
+    margin-top:25px;
     color:#00e5ff;
-
     font-weight:bold;
 }
 
@@ -100,28 +82,23 @@ body{
 ========================= */
 
 button{
-
     border:none;
-
     cursor:pointer;
-
-    border-radius:14px;
 
     padding:14px 28px;
 
-    font-size:18px;
+    border-radius:14px;
 
+    font-size:18px;
     font-weight:bold;
 
-    transition:.25s;
-
     background:#00e5ff;
-
     color:black;
+
+    transition:.25s;
 }
 
 button:hover{
-
     transform:scale(1.05);
 
     box-shadow:
@@ -134,19 +111,18 @@ button:hover{
 ========================= */
 
 #game{
+    position:relative;
 
     width:100vw;
     height:100vh;
-
-    position:relative;
 
     overflow:hidden;
 
     background:
     linear-gradient(
-    to bottom,
-    #081229,
-    #020617
+        to bottom,
+        #081229,
+        #020617
     );
 }
 
@@ -155,7 +131,6 @@ button:hover{
 ========================= */
 
 #hud{
-
     position:fixed;
 
     top:10px;
@@ -164,13 +139,12 @@ button:hover{
     transform:translateX(-50%);
 
     display:flex;
-    gap:15px;
+    gap:12px;
 
-    z-index:500;
+    z-index:1000;
 }
 
 .hudBox{
-
     background:
     rgba(255,255,255,.08);
 
@@ -179,9 +153,9 @@ button:hover{
 
     backdrop-filter:blur(10px);
 
-    border-radius:14px;
+    padding:12px 16px;
 
-    padding:12px 18px;
+    border-radius:14px;
 
     font-weight:bold;
 }
@@ -191,39 +165,36 @@ button:hover{
 ========================= */
 
 #player{
-
     position:absolute;
-
-    bottom:100px;
-
-    left:50%;
 
     width:80px;
     height:50px;
 
+    left:50%;
+    bottom:120px;
+
     transform:translateX(-50%);
+
+    z-index:100;
 }
 
-/* Rocket Core */
+/* Rocket Body */
 
 .shipCore{
-
     position:absolute;
 
     left:50%;
-
     transform:translateX(-50%);
 
     width:30px;
     height:50px;
 
-    border-radius:20px 20px 5px 5px;
+    border-radius:20px 20px 6px 6px;
 
     background:
     linear-gradient(
     white,
-    #00e5ff
-    );
+    #00e5ff);
 
     box-shadow:
     0 0 20px #00e5ff;
@@ -232,7 +203,6 @@ button:hover{
 /* Wings */
 
 .shipWing{
-
     position:absolute;
 
     bottom:0;
@@ -243,11 +213,10 @@ button:hover{
     background:#00e5ff;
 
     box-shadow:
-    0 0 15px #00e5ff;
+    0 0 12px #00e5ff;
 }
 
 .leftWing{
-
     left:5px;
 
     clip-path:
@@ -259,7 +228,6 @@ button:hover{
 }
 
 .rightWing{
-
     right:5px;
 
     clip-path:
@@ -278,7 +246,6 @@ button:hover{
 .diamond,
 .bomb,
 .heart{
-
     position:absolute;
 
     font-size:34px;
@@ -288,22 +255,22 @@ button:hover{
 
 .star{
     filter:
-    drop-shadow(0 0 12px gold);
+    drop-shadow(0 0 10px gold);
 }
 
 .diamond{
     filter:
-    drop-shadow(0 0 12px cyan);
+    drop-shadow(0 0 10px cyan);
 }
 
 .bomb{
     filter:
-    drop-shadow(0 0 12px red);
+    drop-shadow(0 0 10px red);
 }
 
 .heart{
     filter:
-    drop-shadow(0 0 12px hotpink);
+    drop-shadow(0 0 10px hotpink);
 }
 
 /* =========================
@@ -311,15 +278,14 @@ button:hover{
 ========================= */
 
 .bgStar{
-
     position:absolute;
 
     width:3px;
     height:3px;
 
-    border-radius:50%;
-
     background:white;
+
+    border-radius:50%;
 
     animation:
     twinkle 2s infinite;
@@ -345,7 +311,6 @@ button:hover{
 ========================= */
 
 .overlay{
-
     position:fixed;
 
     inset:0;
@@ -359,14 +324,12 @@ button:hover{
     background:
     rgba(0,0,0,.85);
 
-    z-index:999;
+    z-index:1500;
 }
 
 .overlay h1{
-
     font-size:3rem;
-
-    margin-bottom:15px;
+    margin-bottom:20px;
 }
 
 /* =========================
@@ -374,7 +337,6 @@ button:hover{
 ========================= */
 
 #mobileControls{
-
     position:fixed;
 
     bottom:20px;
@@ -388,20 +350,22 @@ button:hover{
 
     gap:25px;
 
-    z-index:900;
+    z-index:1200;
 }
 
 #mobileControls button{
 
-    width:70px;
-    height:70px;
+    width:75px;
+    height:75px;
 
     border-radius:50%;
 
-    font-size:28px;
+    font-size:30px;
+
+    padding:0;
 }
 
-/* Desktop par hide */
+/* Desktop */
 
 @media(min-width:769px){
 
@@ -415,18 +379,16 @@ button:hover{
 ========================= */
 
 #credit{
-
     position:fixed;
 
     right:10px;
-
     bottom:10px;
 
     color:#00e5ff;
 
     font-size:14px;
 
-    z-index:600;
+    z-index:1300;
 }
 
 /* =========================
@@ -439,6 +401,10 @@ button:hover{
         font-size:2rem;
     }
 
+    .logo{
+        font-size:70px;
+    }
+
     #hud{
 
         width:95%;
@@ -449,22 +415,17 @@ button:hover{
     }
 
     .hudBox{
-
-        padding:10px 12px;
-
-        font-size:14px;
+        font-size:13px;
+        padding:10px;
     }
 
     #player{
-
         width:70px;
         height:45px;
-
-        bottom:120px;
+        bottom:150px;
     }
 
     #credit{
-
         font-size:12px;
     }
 }

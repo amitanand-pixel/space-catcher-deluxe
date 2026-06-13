@@ -3,74 +3,91 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🚀 Space Catcher Deluxe</title>
+    <title>🚀 Space Catcher Deluxe | By Amit Anand Jha</title>
 
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- Start Screen -->
+    <!-- START SCREEN -->
     <div id="startScreen" class="screen">
-        <h1>🚀 Space Catcher Deluxe</h1>
 
-        <p>
-            Catch ⭐ Stars and 💎 Diamonds
+        <h1>🚀 SPACE CATCHER DELUXE</h1>
+
+        <p class="subtitle">
+            Catch Stars ⭐ & Diamonds 💎
             <br>
-            Avoid 💣 Bombs
+            Avoid Bombs 💣
             <br>
-            Collect ❤️ Hearts
+            Collect Hearts ❤️
         </p>
 
-        <button id="startBtn">START GAME</button>
+        <button id="startBtn">
+            START GAME
+        </button>
 
         <div class="controls">
-            <h3>Controls</h3>
+            <h3>🎮 Controls</h3>
+
             <p>⬅ Left Arrow</p>
             <p>➡ Right Arrow</p>
             <p>P = Pause</p>
         </div>
+
+        <div class="developer">
+            Developed by Amit Anand Jha
+        </div>
+
     </div>
 
     <!-- HUD -->
     <div id="hud">
 
         <div class="hudBox">
-            Score:
+            ⭐ Score:
             <span id="score">0</span>
         </div>
 
         <div class="hudBox">
-            High Score:
+            🏆 High:
             <span id="highScore">0</span>
         </div>
 
         <div class="hudBox">
-            Lives:
+            ❤️ Lives:
             <span id="lives">3</span>
         </div>
 
         <div class="hudBox">
-            Level:
+            🚀 Level:
             <span id="level">1</span>
         </div>
 
     </div>
 
-    <!-- Game Area -->
+    <!-- GAME AREA -->
     <div id="game">
+
+        <!-- Background Stars -->
+        <div id="background"></div>
 
         <!-- Player -->
         <div id="player"></div>
 
     </div>
 
-    <!-- Pause Screen -->
+    <!-- PAUSE SCREEN -->
     <div id="pauseScreen" class="overlay">
+
         <h1>⏸ PAUSED</h1>
-        <p>Press P to Resume</p>
+
+        <p>
+            Press P to Continue
+        </p>
+
     </div>
 
-    <!-- Game Over Screen -->
+    <!-- GAME OVER -->
     <div id="gameOverScreen" class="overlay">
 
         <h1>💀 GAME OVER</h1>
@@ -84,15 +101,15 @@
             PLAY AGAIN
         </button>
 
+        <div class="gameOverCredit">
+            Developed by Amit Anand Jha
+        </div>
+
     </div>
 
-    <!-- Mobile Controls (future use) -->
-    <div id="mobileControls">
-
-        <button id="leftBtn">⬅</button>
-
-        <button id="rightBtn">➡</button>
-
+    <!-- FOOTER CREDIT -->
+    <div id="credit">
+        🚀 Developed by Amit Anand Jha
     </div>
 
     <script src="script.js"></script>

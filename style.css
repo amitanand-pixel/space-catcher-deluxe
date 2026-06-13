@@ -5,14 +5,15 @@
 }
 
 body{
-    font-family:Arial, Helvetica, sans-serif;
-    background:#050816;
+    font-family:'Segoe UI',sans-serif;
+    background:#030712;
     color:white;
     overflow:hidden;
-    user-select:none;
 }
 
-/* START SCREEN */
+/* =========================
+   START SCREEN
+========================= */
 
 .screen{
     position:fixed;
@@ -26,24 +27,35 @@ body{
     text-align:center;
 
     background:
-    radial-gradient(circle at top,#14213d,#050816);
+    radial-gradient(circle at top,
+    #1e3a8a,
+    #020617);
 
     z-index:1000;
 }
 
 .screen h1{
-    font-size:3rem;
+    font-size:4rem;
+    letter-spacing:3px;
+
+    color:#00e5ff;
+
+    text-shadow:
+    0 0 10px #00e5ff,
+    0 0 20px #00e5ff,
+    0 0 40px #00e5ff;
+
     margin-bottom:20px;
 }
 
-.screen p{
+.subtitle{
     line-height:1.8;
-    margin-bottom:25px;
-    font-size:1.1rem;
+    font-size:1.2rem;
+    margin-bottom:30px;
 }
 
 .controls{
-    margin-top:20px;
+    margin-top:25px;
 }
 
 .controls h3{
@@ -54,35 +66,50 @@ body{
     margin:4px 0;
 }
 
-/* BUTTONS */
+.developer{
+    margin-top:40px;
+    color:#00e5ff;
+    font-weight:bold;
+    letter-spacing:1px;
+}
+
+/* =========================
+   BUTTONS
+========================= */
 
 button{
+    padding:14px 30px;
     border:none;
-    cursor:pointer;
+    border-radius:12px;
 
-    padding:14px 28px;
+    background:#00e5ff;
+
+    color:black;
 
     font-size:18px;
     font-weight:bold;
 
-    border-radius:12px;
+    cursor:pointer;
 
-    background:#00e5ff;
-    color:#000;
-
-    transition:0.25s;
+    transition:0.3s;
 }
 
 button:hover{
-    transform:scale(1.05);
+    transform:scale(1.08);
+
+    box-shadow:
+    0 0 15px #00e5ff,
+    0 0 35px #00e5ff;
 }
 
-/* HUD */
+/* =========================
+   HUD
+========================= */
 
 #hud{
     position:fixed;
 
-    top:10px;
+    top:15px;
     left:50%;
 
     transform:translateX(-50%);
@@ -90,24 +117,29 @@ button:hover{
     display:flex;
     gap:15px;
 
-    z-index:200;
+    z-index:500;
 }
 
 .hudBox{
     background:rgba(255,255,255,0.08);
 
-    border:1px solid rgba(255,255,255,0.2);
+    backdrop-filter:blur(10px);
 
-    padding:10px 15px;
+    padding:10px 18px;
 
-    border-radius:10px;
+    border-radius:12px;
 
-    backdrop-filter:blur(8px);
+    border:1px solid rgba(255,255,255,.15);
 
     font-weight:bold;
+
+    box-shadow:
+    0 0 10px rgba(255,255,255,.1);
 }
 
-/* GAME AREA */
+/* =========================
+   GAME AREA
+========================= */
 
 #game{
     width:100vw;
@@ -119,82 +151,117 @@ button:hover{
     background:
     linear-gradient(
         to bottom,
-        #081229,
-        #050816
+        #0f172a,
+        #020617
     );
 }
 
-/* PLAYER SPACESHIP */
+/* =========================
+   BACKGROUND STARS
+========================= */
+
+.bgStar{
+    position:absolute;
+
+    width:3px;
+    height:3px;
+
+    background:white;
+
+    border-radius:50%;
+
+    opacity:.8;
+
+    animation:twinkle 2s infinite;
+}
+
+@keyframes twinkle{
+
+    0%{
+        opacity:.2;
+    }
+
+    50%{
+        opacity:1;
+    }
+
+    100%{
+        opacity:.2;
+    }
+}
+
+/* =========================
+   PLAYER
+========================= */
 
 #player{
-    width:90px;
-    height:28px;
 
     position:absolute;
+
     bottom:30px;
-    left:50%;
 
-    transform:translateX(-50%);
+    width:90px;
+    height:24px;
 
-    border-radius:25px;
+    border-radius:30px;
 
     background:
     linear-gradient(
         90deg,
-        #00ff9d,
-        #00d4ff
+        #00ff88,
+        #00e5ff
     );
 
     box-shadow:
-    0 0 10px #00ff9d,
-    0 0 20px #00ff9d,
-    0 0 40px #00ff9d;
+    0 0 10px #00ff88,
+    0 0 20px #00ff88,
+    0 0 40px #00ff88;
+
+    transition:none;
 }
 
-/* FALLING ITEMS */
+/* =========================
+   FALLING OBJECTS
+========================= */
 
 .star,
 .diamond,
 .bomb,
 .heart{
+
     position:absolute;
 
-    display:flex;
-    justify-content:center;
-    align-items:center;
+    font-size:32px;
 
-    font-size:28px;
-
-    pointer-events:none;
+    user-select:none;
 }
 
 .star{
-    text-shadow:
-    0 0 10px gold,
-    0 0 20px gold;
+    filter:
+    drop-shadow(0 0 10px gold);
 }
 
 .diamond{
-    text-shadow:
-    0 0 10px cyan,
-    0 0 20px cyan;
+    filter:
+    drop-shadow(0 0 10px cyan);
 }
 
 .bomb{
-    text-shadow:
-    0 0 10px red,
-    0 0 20px red;
+    filter:
+    drop-shadow(0 0 10px red);
 }
 
 .heart{
-    text-shadow:
-    0 0 10px hotpink,
-    0 0 20px hotpink;
+    filter:
+    drop-shadow(0 0 10px hotpink);
 }
 
-/* OVERLAYS */
+/* =========================
+   OVERLAYS
+========================= */
 
 .overlay{
+
     position:fixed;
     inset:0;
 
@@ -204,25 +271,37 @@ button:hover{
     align-items:center;
     flex-direction:column;
 
-    background:rgba(0,0,0,0.8);
+    background:rgba(0,0,0,.85);
 
     z-index:999;
 }
 
 .overlay h1{
-    font-size:3rem;
+
+    font-size:4rem;
+
     margin-bottom:20px;
+
+    text-shadow:
+    0 0 15px white;
 }
 
 .overlay p{
-    margin-bottom:20px;
     font-size:1.3rem;
+    margin-bottom:20px;
 }
 
-/* SCORE ANIMATION */
+.gameOverCredit{
+    margin-top:20px;
+    color:#00e5ff;
+}
+
+/* =========================
+   SCORE POP EFFECT
+========================= */
 
 .scorePop{
-    animation:pop 0.25s ease;
+    animation:pop .25s ease;
 }
 
 @keyframes pop{
@@ -240,38 +319,39 @@ button:hover{
     }
 }
 
-/* BACKGROUND STARS */
+/* =========================
+   FOOTER CREDIT
+========================= */
 
-.bgStar{
-    position:absolute;
+#credit{
 
-    width:3px;
-    height:3px;
+    position:fixed;
 
-    background:white;
+    right:15px;
+    bottom:10px;
 
-    border-radius:50%;
+    color:#00e5ff;
 
-    opacity:.6;
+    font-size:14px;
+
+    opacity:.8;
+
+    z-index:600;
 }
 
-/* MOBILE CONTROLS */
-
-#mobileControls{
-    display:none;
-}
-
-/* RESPONSIVE */
+/* =========================
+   RESPONSIVE
+========================= */
 
 @media(max-width:768px){
+
+    .screen h1{
+        font-size:2.2rem;
+    }
 
     #hud{
         flex-wrap:wrap;
         width:95%;
         justify-content:center;
-    }
-
-    .screen h1{
-        font-size:2rem;
     }
 }

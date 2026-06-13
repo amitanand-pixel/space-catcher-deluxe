@@ -23,38 +23,43 @@ let level = 1;
 let gameRunning = false;
 let paused = false;
 
-let playerX = window.innerWidth / 2;
-let playerSpeed = 8;
-
-const keys = {};
+let playerSpeed = 10;
+let playerX = (window.innerWidth / 2) - 45;
 
 let itemSpeed = 3;
 let spawnRate = 800;
+
+const keys = {};
+const items = [];
+
+let spawnInterval;
 
 let highScore =
 Number(localStorage.getItem("spaceHighScore")) || 0;
 
 highScoreEl.textContent = highScore;
 
-const items = [];
+/* =====================
+   BACKGROUND STARS
+===================== */
 
-/* -------------------- */
-/* BACKGROUND STARS */
-/* -------------------- */
+function createBackgroundStars(){
 
-function createBackgroundStars() {
+    for(let i=0;i<150;i++){
 
-    for(let i=0;i<120;i++){
-
-        const star = document.createElement("div");
+        const star =
+        document.createElement("div");
 
         star.className = "bgStar";
 
         star.style.left =
-        Math.random() * window.innerWidth + "px";
+        Math.random()*window.innerWidth+"px";
 
         star.style.top =
-        Math.random() * window.innerHeight + "px";
+        Math.random()*window.innerHeight+"px";
+
+        star.style.animationDelay =
+        Math.random()*3+"s";
 
         game.appendChild(star);
     }
@@ -62,15 +67,15 @@ function createBackgroundStars() {
 
 createBackgroundStars();
 
-/* -------------------- */
-/* PLAYER */
-/* -------------------- */
+/* =====================
+   KEYS
+===================== */
 
 document.addEventListener("keydown",(e)=>{
 
     keys[e.key] = true;
 
-    if(e.key.toLowerCase() === "p"){
+    if(e.key.toLowerCase()==="p"){
         togglePause();
     }
 });
@@ -79,6 +84,10 @@ document.addEventListener("keyup",(e)=>{
 
     keys[e.key] = false;
 });
+
+/* =====================
+   PLAYER MOVEMENT
+===================== */
 
 function updatePlayer(){
 
@@ -95,40 +104,45 @@ function updatePlayer(){
     }
 
     const maxX =
-    window.innerWidth - player.offsetWidth;
+    window.innerWidth -
+    player.offsetWidth;
 
     if(playerX < 0) playerX = 0;
 
-    if(playerX > maxX) playerX = maxX;
+    if(playerX > maxX)
+        playerX = maxX;
 
-    player.style.left = playerX + "px";
+    player.style.left =
+    playerX + "px";
 }
 
-/* -------------------- */
-/* ITEMS */
-/* -------------------- */
+/* =====================
+   CREATE ITEMS
+===================== */
 
 function createItem(){
 
-    if(!gameRunning || paused) return;
+    if(!gameRunning || paused)
+        return;
 
-    const item = document.createElement("div");
+    const item =
+    document.createElement("div");
+
+    const r = Math.random();
 
     let type;
 
-    const random = Math.random();
-
-    if(random < 0.60){
+    if(r < 0.60){
 
         type = "star";
         item.innerHTML = "⭐";
 
-    }else if(random < 0.75){
+    }else if(r < 0.75){
 
         type = "diamond";
         item.innerHTML = "💎";
 
-    }else if(random < 0.90){
+    }else if(r < 0.90){
 
         type = "bomb";
         item.innerHTML = "💣";
@@ -143,24 +157,24 @@ function createItem(){
 
     item.style.left =
     Math.random() *
-    (window.innerWidth - 40)
+    (window.innerWidth - 50)
     + "px";
 
-    item.style.top = "-40px";
+    item.style.top = "-50px";
 
     game.appendChild(item);
 
     items.push({
+
         el:item,
         type:type,
-        x:parseFloat(item.style.left),
-        y:-40
+        y:-50
     });
 }
 
-/* -------------------- */
-/* COLLISION */
-/* -------------------- */
+/* =====================
+   COLLISION
+===================== */
 
 function collision(a,b){
 
@@ -172,13 +186,14 @@ function collision(a,b){
     );
 }
 
-/* -------------------- */
-/* UPDATE ITEMS */
-/* -------------------- */
+/* =====================
+   UPDATE ITEMS
+===================== */
 
 function updateItems(){
 
-    if(!gameRunning || paused) return;
+    if(!gameRunning || paused)
+        return;
 
     const playerRect =
     player.getBoundingClientRect();
@@ -197,61 +212,58 @@ function updateItems(){
 
         if(collision(itemRect,playerRect)){
 
-            if(item.type === "star"){
-
-                score += 1;
-
-            }else if(item.type === "diamond"){
-
-                score += 5;
-
-            }else if(item.type === "heart"){
-
-                if(lives < 5){
-                    lives += 1;
-                }
-
-            }else if(item.type === "bomb"){
-
-                lives -= 1;
-            }
-
-            updateUI();
+            handleItem(item.type);
 
             item.el.remove();
+
             items.splice(i,1);
 
             continue;
         }
 
-        if(item.y > window.innerHeight){
+        if(item.y >
+        window.innerHeight){
 
             item.el.remove();
-            items.splice(i,1);
 
-            continue;
+            items.splice(i,1);
         }
     }
 }
 
-/* -------------------- */
-/* LEVEL SYSTEM */
-/* -------------------- */
+/* =====================
+   ITEM EFFECTS
+===================== */
 
-function updateLevel(){
+function handleItem(type){
 
-    level =
-    Math.floor(score / 20) + 1;
+    switch(type){
 
-    itemSpeed =
-    3 + (level - 1);
+        case "star":
+            score += 1;
+            break;
 
-    levelEl.textContent = level;
+        case "diamond":
+            score += 5;
+            break;
+
+        case "heart":
+            if(lives < 5){
+                lives++;
+            }
+            break;
+
+        case "bomb":
+            lives--;
+            break;
+    }
+
+    updateUI();
 }
 
-/* -------------------- */
-/* UI */
-/* -------------------- */
+/* =====================
+   UI
+===================== */
 
 function updateUI(){
 
@@ -262,7 +274,9 @@ function updateUI(){
 
     setTimeout(()=>{
 
-        scoreEl.classList.remove("scorePop");
+        scoreEl.classList.remove(
+            "scorePop"
+        );
 
     },200);
 
@@ -287,9 +301,25 @@ function updateUI(){
     }
 }
 
-/* -------------------- */
-/* PAUSE */
-/* -------------------- */
+/* =====================
+   LEVEL SYSTEM
+===================== */
+
+function updateLevel(){
+
+    level =
+    Math.floor(score / 20) + 1;
+
+    itemSpeed =
+    3 + (level - 1);
+
+    levelEl.textContent =
+    level;
+}
+
+/* =====================
+   PAUSE
+===================== */
 
 function togglePause(){
 
@@ -301,23 +331,28 @@ function togglePause(){
     paused ? "flex" : "none";
 }
 
-/* -------------------- */
-/* GAME OVER */
-/* -------------------- */
+/* =====================
+   GAME OVER
+===================== */
 
 function gameOver(){
 
     gameRunning = false;
 
-    finalScore.textContent = score;
+    clearInterval(
+        spawnInterval
+    );
+
+    finalScore.textContent =
+    score;
 
     gameOverScreen.style.display =
     "flex";
 }
 
-/* -------------------- */
-/* GAME LOOP */
-/* -------------------- */
+/* =====================
+   GAME LOOP
+===================== */
 
 function gameLoop(){
 
@@ -332,11 +367,9 @@ function gameLoop(){
 
 gameLoop();
 
-/* -------------------- */
-/* SPAWNER */
-/* -------------------- */
-
-let spawnInterval;
+/* =====================
+   SPAWN
+===================== */
 
 function startSpawning(){
 
@@ -348,9 +381,9 @@ function startSpawning(){
     },spawnRate);
 }
 
-/* -------------------- */
-/* START */
-/* -------------------- */
+/* =====================
+   START GAME
+===================== */
 
 startBtn.addEventListener(
 "click",
@@ -364,9 +397,9 @@ startBtn.addEventListener(
     startSpawning();
 });
 
-/* -------------------- */
-/* RESTART */
-/* -------------------- */
+/* =====================
+   RESTART
+===================== */
 
 restartBtn.addEventListener(
 "click",
@@ -375,9 +408,9 @@ restartBtn.addEventListener(
     location.reload();
 });
 
-/* -------------------- */
-/* RESIZE */
-/* -------------------- */
+/* =====================
+   RESIZE
+===================== */
 
 window.addEventListener(
 "resize",

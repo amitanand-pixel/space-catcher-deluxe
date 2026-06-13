@@ -1,118 +1,144 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🚀 Space Catcher Deluxe | By Amit Anand Jha</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="style.css">
+<title>🚀 Space Catcher Deluxe | By Amit Anand Jha</title>
+
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- START SCREEN -->
-    <div id="startScreen" class="screen">
+<!-- START SCREEN -->
+<div id="startScreen" class="screen">
 
-        <h1>🚀 SPACE CATCHER DELUXE</h1>
+    <div class="logo">
+        🚀
+    </div>
 
-        <p class="subtitle">
-            Catch Stars ⭐ & Diamonds 💎
-            <br>
-            Avoid Bombs 💣
-            <br>
-            Collect Hearts ❤️
-        </p>
+    <h1>SPACE CATCHER DELUXE</h1>
 
-        <button id="startBtn">
-            START GAME
-        </button>
+    <p class="subtitle">
+        Catch Stars ⭐<br>
+        Collect Diamonds 💎<br>
+        Gain Hearts ❤️<br>
+        Avoid Bombs 💣
+    </p>
 
-        <div class="controls">
-            <h3>🎮 Controls</h3>
+    <button id="startBtn">
+        START GAME
+    </button>
 
-            <p>⬅ Left Arrow</p>
-            <p>➡ Right Arrow</p>
-            <p>P = Pause</p>
-        </div>
+    <div class="controls">
 
-        <div class="developer">
-            Developed by Amit Anand Jha
-        </div>
+        <h3>🎮 Controls</h3>
+
+        <p>Desktop: ⬅ ➡ Arrow Keys</p>
+
+        <p>Mobile: Touch Buttons</p>
+
+        <p>Pause: P Key</p>
 
     </div>
 
-    <!-- HUD -->
-    <div id="hud">
+    <div class="developer">
+        Developed by Amit Anand Jha
+    </div>
 
-        <div class="hudBox">
-            ⭐ Score:
-            <span id="score">0</span>
-        </div>
+</div>
 
-        <div class="hudBox">
-            🏆 High:
-            <span id="highScore">0</span>
-        </div>
+<!-- HUD -->
+<div id="hud">
 
-        <div class="hudBox">
-            ❤️ Lives:
-            <span id="lives">3</span>
-        </div>
+    <div class="hudBox">
+        ⭐ Score:
+        <span id="score">0</span>
+    </div>
 
-        <div class="hudBox">
-            🚀 Level:
-            <span id="level">1</span>
-        </div>
+    <div class="hudBox">
+        🏆 High:
+        <span id="highScore">0</span>
+    </div>
+
+    <div class="hudBox">
+        ❤️ Lives:
+        <span id="lives">3</span>
+    </div>
+
+    <div class="hudBox">
+        🚀 Level:
+        <span id="level">1</span>
+    </div>
+
+</div>
+
+<!-- GAME AREA -->
+<div id="game">
+
+    <!-- PLAYER -->
+    <div id="player">
+
+        <div class="shipCore"></div>
+
+        <div class="shipWing leftWing"></div>
+
+        <div class="shipWing rightWing"></div>
 
     </div>
 
-    <!-- GAME AREA -->
-    <div id="game">
+</div>
 
-        <!-- Background Stars -->
-        <div id="background"></div>
+<!-- PAUSE -->
+<div id="pauseScreen" class="overlay">
 
-        <!-- Player -->
-        <div id="player"></div>
+    <h1>⏸ PAUSED</h1>
 
+    <p>Press P To Continue</p>
+
+</div>
+
+<!-- GAME OVER -->
+<div id="gameOverScreen" class="overlay">
+
+    <h1>💀 GAME OVER</h1>
+
+    <p>
+        Final Score:
+        <span id="finalScore">0</span>
+    </p>
+
+    <button id="restartBtn">
+        PLAY AGAIN
+    </button>
+
+    <div class="developer">
+        Developed by Amit Anand Jha
     </div>
 
-    <!-- PAUSE SCREEN -->
-    <div id="pauseScreen" class="overlay">
+</div>
 
-        <h1>⏸ PAUSED</h1>
+<!-- MOBILE CONTROLS -->
 
-        <p>
-            Press P to Continue
-        </p>
+<div id="mobileControls">
 
-    </div>
+    <button id="leftBtn">
+        ⬅
+    </button>
 
-    <!-- GAME OVER -->
-    <div id="gameOverScreen" class="overlay">
+    <button id="rightBtn">
+        ➡
+    </button>
 
-        <h1>💀 GAME OVER</h1>
+</div>
 
-        <p>
-            Final Score:
-            <span id="finalScore">0</span>
-        </p>
+<!-- CREDIT -->
 
-        <button id="restartBtn">
-            PLAY AGAIN
-        </button>
+<div id="credit">
+    🚀 Developed by Amit Anand Jha
+</div>
 
-        <div class="gameOverCredit">
-            Developed by Amit Anand Jha
-        </div>
-
-    </div>
-
-    <!-- FOOTER CREDIT -->
-    <div id="credit">
-        🚀 Developed by Amit Anand Jha
-    </div>
-
-    <script src="script.js"></script>
+<script src="script.js"></script>
 
 </body>
 </html>

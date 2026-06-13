@@ -1,29 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>🚀 Space Catcher Deluxe | By Amit Anand Jha</title>
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
 
-<link rel="stylesheet" href="style.css">
+<meta name="theme-color"
+content="#020617">
+
+<title>
+🚀 Space Catcher Deluxe | By Amit Anand Jha
+</title>
+
+<link rel="stylesheet"
+href="style.css">
+
 </head>
+
 <body>
 
-<!-- START SCREEN -->
+<!-- =========================
+     START SCREEN
+========================= -->
+
 <div id="startScreen" class="screen">
 
     <div class="logo">
         🚀
     </div>
 
-    <h1>SPACE CATCHER DELUXE</h1>
+    <h1>
+        SPACE CATCHER DELUXE
+    </h1>
 
     <p class="subtitle">
+
         Catch Stars ⭐<br>
         Collect Diamonds 💎<br>
         Gain Hearts ❤️<br>
         Avoid Bombs 💣
+
     </p>
 
     <button id="startBtn">
@@ -34,49 +52,92 @@
 
         <h3>🎮 Controls</h3>
 
-        <p>Desktop: ⬅ ➡ Arrow Keys</p>
+        <p>
+            Desktop:
+            ⬅ ➡ Arrow Keys
+        </p>
 
-        <p>Mobile: Touch Buttons</p>
+        <p>
+            Mobile:
+            Touch Controls
+        </p>
 
-        <p>Pause: P Key</p>
+        <p>
+            Pause:
+            P Key
+        </p>
 
     </div>
 
     <div class="developer">
-        Developed by Amit Anand Jha
+
+        Developed by
+        <strong>
+            Amit Anand Jha
+        </strong>
+
     </div>
 
 </div>
 
-<!-- HUD -->
+<!-- =========================
+     HUD
+========================= -->
+
 <div id="hud">
 
     <div class="hudBox">
-        ⭐ Score:
-        <span id="score">0</span>
+
+        ⭐ Score
+
+        <span id="score">
+            0
+        </span>
+
     </div>
 
     <div class="hudBox">
-        🏆 High:
-        <span id="highScore">0</span>
+
+        🏆 High
+
+        <span id="highScore">
+            0
+        </span>
+
     </div>
 
     <div class="hudBox">
-        ❤️ Lives:
-        <span id="lives">3</span>
+
+        ❤️ Lives
+
+        <span id="lives">
+            3
+        </span>
+
     </div>
 
     <div class="hudBox">
-        🚀 Level:
-        <span id="level">1</span>
+
+        🚀 Level
+
+        <span id="level">
+            1
+        </span>
+
     </div>
 
 </div>
 
-<!-- GAME AREA -->
+<!-- =========================
+     GAME AREA
+========================= -->
+
 <div id="game">
 
+    <!-- Background stars generated via JS -->
+
     <!-- PLAYER -->
+
     <div id="player">
 
         <div class="shipCore"></div>
@@ -89,54 +150,93 @@
 
 </div>
 
-<!-- PAUSE -->
-<div id="pauseScreen" class="overlay">
+<!-- =========================
+     PAUSE SCREEN
+========================= -->
 
-    <h1>⏸ PAUSED</h1>
+<div id="pauseScreen"
+class="overlay">
 
-    <p>Press P To Continue</p>
+    <h1>
+        ⏸ PAUSED
+    </h1>
+
+    <p>
+        Press P To Continue
+    </p>
 
 </div>
 
-<!-- GAME OVER -->
-<div id="gameOverScreen" class="overlay">
+<!-- =========================
+     GAME OVER
+========================= -->
 
-    <h1>💀 GAME OVER</h1>
+<div id="gameOverScreen"
+class="overlay">
+
+    <h1>
+        💀 GAME OVER
+    </h1>
 
     <p>
+
         Final Score:
-        <span id="finalScore">0</span>
+
+        <span id="finalScore">
+            0
+        </span>
+
     </p>
 
     <button id="restartBtn">
+
         PLAY AGAIN
+
     </button>
 
     <div class="developer">
-        Developed by Amit Anand Jha
+
+        Developed by
+        Amit Anand Jha
+
     </div>
 
 </div>
 
-<!-- MOBILE CONTROLS -->
+<!-- =========================
+     MOBILE CONTROLS
+========================= -->
 
 <div id="mobileControls">
 
     <button id="leftBtn">
+
         ⬅
+
     </button>
 
     <button id="rightBtn">
+
         ➡
+
     </button>
 
 </div>
 
-<!-- CREDIT -->
+<!-- =========================
+     FOOTER CREDIT
+========================= -->
 
 <div id="credit">
-    🚀 Developed by Amit Anand Jha
+
+    🚀 Developed by
+    Amit Anand Jha
+
 </div>
+
+<!-- =========================
+     SCRIPT
+========================= -->
 
 <script src="script.js"></script>
 

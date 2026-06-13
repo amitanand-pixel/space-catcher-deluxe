@@ -3,7 +3,6 @@
 ========================= */
 
 const game = document.getElementById("game");
-
 const player = document.getElementById("player");
 
 const scoreEl = document.getElementById("score");
@@ -11,32 +10,20 @@ const highScoreEl = document.getElementById("highScore");
 const livesEl = document.getElementById("lives");
 const levelEl = document.getElementById("level");
 
-const startScreen =
-document.getElementById("startScreen");
+const startScreen = document.getElementById("startScreen");
+const pauseScreen = document.getElementById("pauseScreen");
+const gameOverScreen = document.getElementById("gameOverScreen");
 
-const pauseScreen =
-document.getElementById("pauseScreen");
+const startBtn = document.getElementById("startBtn");
+const restartBtn = document.getElementById("restartBtn");
 
-const gameOverScreen =
-document.getElementById("gameOverScreen");
+const finalScore = document.getElementById("finalScore");
 
-const startBtn =
-document.getElementById("startBtn");
-
-const restartBtn =
-document.getElementById("restartBtn");
-
-const finalScore =
-document.getElementById("finalScore");
-
-const leftBtn =
-document.getElementById("leftBtn");
-
-const rightBtn =
-document.getElementById("rightBtn");
+const leftBtn = document.getElementById("leftBtn");
+const rightBtn = document.getElementById("rightBtn");
 
 /* =========================
-   GAME VARIABLES
+   GAME DATA
 ========================= */
 
 let score = 0;
@@ -46,20 +33,16 @@ let level = 1;
 let gameRunning = false;
 let paused = false;
 
-let itemSpeed = 3;
-
+let playerX = window.innerWidth / 2;
 let playerSpeed = 8;
 
-let playerX =
-(window.innerWidth / 2) - 40;
-
+let itemSpeed = 3;
 let spawnRate = 800;
 
 let spawnInterval;
 
-const keys = {};
-
 const items = [];
+const keys = {};
 
 /* =========================
    HIGH SCORE
@@ -110,7 +93,7 @@ function createBackgroundStars(){
 createBackgroundStars();
 
 /* =========================
-   KEYBOARD CONTROLS
+   KEYBOARD
 ========================= */
 
 document.addEventListener(
@@ -120,8 +103,7 @@ document.addEventListener(
     keys[e.key] = true;
 
     if(
-        e.key.toLowerCase()
-        === "p"
+        e.key.toLowerCase() === "p"
     ){
         togglePause();
     }
@@ -130,7 +112,6 @@ document.addEventListener(
 document.addEventListener(
 "keyup",
 (e)=>{
-
     keys[e.key] = false;
 });
 
@@ -143,16 +124,14 @@ if(leftBtn){
     leftBtn.addEventListener(
     "touchstart",
     ()=>{
-
         keys["ArrowLeft"] = true;
     });
 
     leftBtn.addEventListener(
     "touchend",
     ()=>{
-
         keys["ArrowLeft"] = false;
-    );
+    });
 }
 
 if(rightBtn){
@@ -160,20 +139,18 @@ if(rightBtn){
     rightBtn.addEventListener(
     "touchstart",
     ()=>{
-
         keys["ArrowRight"] = true;
     });
 
     rightBtn.addEventListener(
     "touchend",
     ()=>{
-
         keys["ArrowRight"] = false;
     });
 }
 
 /* =========================
-   PLAYER MOVEMENT
+   PLAYER
 ========================= */
 
 function updatePlayer(){
@@ -199,22 +176,18 @@ function updatePlayer(){
     window.innerWidth -
     player.offsetWidth;
 
-    if(playerX < 0){
-
+    if(playerX < 0)
         playerX = 0;
-    }
 
-    if(playerX > maxX){
-
+    if(playerX > maxX)
         playerX = maxX;
-    }
 
     player.style.left =
     playerX + "px";
 }
 
 /* =========================
-   ITEM CREATION
+   CREATE ITEM
 ========================= */
 
 function createItem(){
@@ -229,38 +202,30 @@ function createItem(){
     "div"
     );
 
-    const random =
+    const r =
     Math.random();
 
     let type;
 
-    if(random < 0.60){
+    if(r < 0.60){
 
         type = "star";
-        item.innerHTML =
-        "⭐";
+        item.innerHTML = "⭐";
 
-    }
-
-    else if(random < 0.75){
+    }else if(r < 0.75){
 
         type = "diamond";
-        item.innerHTML =
-        "💎";
-    }
+        item.innerHTML = "💎";
 
-    else if(random < 0.90){
+    }else if(r < 0.90){
 
         type = "bomb";
-        item.innerHTML =
-        "💣";
-    }
+        item.innerHTML = "💣";
 
-    else{
+    }else{
 
         type = "heart";
-        item.innerHTML =
-        "❤️";
+        item.innerHTML = "❤️";
     }
 
     item.classList.add(
@@ -270,8 +235,7 @@ function createItem(){
     item.style.left =
     Math.random() *
     (
-        window.innerWidth
-        - 50
+    window.innerWidth - 50
     ) + "px";
 
     item.style.top =
@@ -290,55 +254,7 @@ function createItem(){
 }
 
 /* =========================
-   START GAME
-========================= */
-
-startBtn.addEventListener(
-"click",
-()=>{
-
-    startScreen.style.display =
-    "none";
-
-    gameRunning = true;
-
-    startSpawning();
-});
-
-/* =========================
-   SPAWNER
-========================= */
-
-function startSpawning(){
-
-    spawnInterval =
-    setInterval(
-    ()=>{
-
-        createItem();
-
-    },
-    spawnRate
-    );
-}
-
-/* =========================
-   MAIN LOOP
-========================= */
-
-function gameLoop(){
-
-    updatePlayer();
-
-    requestAnimationFrame(
-    gameLoop
-    );
-}
-
-gameLoop();
-
-/* =========================
-   COLLISION DETECTION
+   COLLISION
 ========================= */
 
 function collision(a,b){
@@ -367,8 +283,11 @@ function updateItems(){
     player.getBoundingClientRect();
 
     for(
-        let i = items.length - 1;
-        i >= 0;
+        let i =
+        items.length-1;
+
+        i>=0;
+
         i--
     ){
 
@@ -383,8 +302,6 @@ function updateItems(){
 
         const itemRect =
         item.el.getBoundingClientRect();
-
-        /* Collision */
 
         if(
             collision(
@@ -406,8 +323,6 @@ function updateItems(){
 
             continue;
         }
-
-        /* Missed Item */
 
         if(
             item.y >
@@ -433,26 +348,21 @@ function handleItem(type){
     switch(type){
 
         case "star":
-
             score += 1;
             break;
 
         case "diamond":
-
             score += 5;
             break;
 
         case "heart":
 
-            if(lives < 5){
-
+            if(lives < 5)
                 lives++;
-            }
 
             break;
 
         case "bomb":
-
             lives--;
             break;
     }
@@ -461,7 +371,7 @@ function handleItem(type){
 }
 
 /* =========================
-   UI UPDATE
+   UI
 ========================= */
 
 function updateUI(){
@@ -474,24 +384,21 @@ function updateUI(){
 
     updateLevel();
 
-    /* High Score */
-
     if(
         score > highScore
     ){
 
-        highScore = score;
+        highScore =
+        score;
 
         localStorage.setItem(
-            "spaceHighScore",
-            highScore
+        "spaceHighScore",
+        highScore
         );
 
         highScoreEl.textContent =
         highScore;
     }
-
-    /* Game Over */
 
     if(
         lives <= 0
@@ -502,14 +409,14 @@ function updateUI(){
 }
 
 /* =========================
-   LEVEL SYSTEM
+   LEVELS
 ========================= */
 
 function updateLevel(){
 
     level =
     Math.floor(
-        score / 20
+    score / 20
     ) + 1;
 
     levelEl.textContent =
@@ -517,7 +424,7 @@ function updateLevel(){
 
     itemSpeed =
     3 + (
-        level - 1
+    level - 1
     );
 }
 
@@ -551,7 +458,7 @@ function gameOver(){
     false;
 
     clearInterval(
-        spawnInterval
+    spawnInterval
     );
 
     finalScore.textContent =
@@ -560,6 +467,22 @@ function gameOver(){
     gameOverScreen.style.display =
     "flex";
 }
+
+/* =========================
+   START GAME
+========================= */
+
+startBtn.addEventListener(
+"click",
+()=>{
+
+    startScreen.style.display =
+    "none";
+
+    gameRunning = true;
+
+    startSpawning();
+});
 
 /* =========================
    RESTART
@@ -573,6 +496,40 @@ restartBtn.addEventListener(
 });
 
 /* =========================
+   SPAWNER
+========================= */
+
+function startSpawning(){
+
+    spawnInterval =
+    setInterval(
+    ()=>{
+
+        createItem();
+
+    },
+    spawnRate
+    );
+}
+
+/* =========================
+   LOOP
+========================= */
+
+function gameLoop(){
+
+    updatePlayer();
+
+    updateItems();
+
+    requestAnimationFrame(
+    gameLoop
+    );
+}
+
+gameLoop();
+
+/* =========================
    RESIZE
 ========================= */
 
@@ -581,9 +538,7 @@ window.addEventListener(
 ()=>{
 
     const maxX =
-
     window.innerWidth -
-
     player.offsetWidth;
 
     if(
@@ -593,20 +548,3 @@ window.addEventListener(
         playerX = maxX;
     }
 });
-
-/* =========================
-   MAIN LOOP UPDATE
-========================= */
-
-/* Purane gameLoop ko replace karo */
-
-function gameLoop(){
-
-    updatePlayer();
-
-    updateItems();
-
-    requestAnimationFrame(
-        gameLoop
-    );
-}

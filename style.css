@@ -6,7 +6,7 @@
 
 body{
     font-family:'Segoe UI',sans-serif;
-    background:#030712;
+    background:#020617;
     color:white;
     overflow:hidden;
 }
@@ -34,43 +34,65 @@ body{
     z-index:1000;
 }
 
+.logo{
+    font-size:80px;
+    margin-bottom:15px;
+
+    animation:floatShip 2s ease-in-out infinite;
+}
+
+@keyframes floatShip{
+
+    0%{
+        transform:translateY(0px);
+    }
+
+    50%{
+        transform:translateY(-10px);
+    }
+
+    100%{
+        transform:translateY(0px);
+    }
+}
+
 .screen h1{
-    font-size:4rem;
-    letter-spacing:3px;
 
     color:#00e5ff;
+
+    font-size:3rem;
+
+    margin-bottom:15px;
 
     text-shadow:
     0 0 10px #00e5ff,
     0 0 20px #00e5ff,
     0 0 40px #00e5ff;
-
-    margin-bottom:20px;
 }
 
 .subtitle{
+
     line-height:1.8;
-    font-size:1.2rem;
-    margin-bottom:30px;
+    font-size:1.1rem;
+
+    margin-bottom:25px;
 }
 
 .controls{
-    margin-top:25px;
-}
-
-.controls h3{
-    margin-bottom:10px;
+    margin-top:20px;
 }
 
 .controls p{
-    margin:4px 0;
+    margin-top:5px;
 }
 
 .developer{
-    margin-top:40px;
+
+    margin-top:30px;
+
     color:#00e5ff;
+
     font-weight:bold;
-    letter-spacing:1px;
 }
 
 /* =========================
@@ -78,28 +100,54 @@ body{
 ========================= */
 
 button{
-    padding:14px 30px;
+
     border:none;
-    border-radius:12px;
+
+    cursor:pointer;
+
+    border-radius:14px;
+
+    padding:14px 28px;
+
+    font-size:18px;
+
+    font-weight:bold;
+
+    transition:.25s;
 
     background:#00e5ff;
 
     color:black;
-
-    font-size:18px;
-    font-weight:bold;
-
-    cursor:pointer;
-
-    transition:0.3s;
 }
 
 button:hover{
-    transform:scale(1.08);
+
+    transform:scale(1.05);
 
     box-shadow:
     0 0 15px #00e5ff,
-    0 0 35px #00e5ff;
+    0 0 30px #00e5ff;
+}
+
+/* =========================
+   GAME AREA
+========================= */
+
+#game{
+
+    width:100vw;
+    height:100vh;
+
+    position:relative;
+
+    overflow:hidden;
+
+    background:
+    linear-gradient(
+    to bottom,
+    #081229,
+    #020617
+    );
 }
 
 /* =========================
@@ -107,9 +155,10 @@ button:hover{
 ========================= */
 
 #hud{
+
     position:fixed;
 
-    top:15px;
+    top:10px;
     left:50%;
 
     transform:translateX(-50%);
@@ -121,39 +170,140 @@ button:hover{
 }
 
 .hudBox{
-    background:rgba(255,255,255,0.08);
+
+    background:
+    rgba(255,255,255,.08);
+
+    border:
+    1px solid rgba(255,255,255,.15);
 
     backdrop-filter:blur(10px);
 
-    padding:10px 18px;
+    border-radius:14px;
 
-    border-radius:12px;
-
-    border:1px solid rgba(255,255,255,.15);
+    padding:12px 18px;
 
     font-weight:bold;
-
-    box-shadow:
-    0 0 10px rgba(255,255,255,.1);
 }
 
 /* =========================
-   GAME AREA
+   PLAYER
 ========================= */
 
-#game{
-    width:100vw;
-    height:100vh;
+#player{
 
-    position:relative;
-    overflow:hidden;
+    position:absolute;
+
+    bottom:100px;
+
+    left:50%;
+
+    width:80px;
+    height:50px;
+
+    transform:translateX(-50%);
+}
+
+/* Rocket Core */
+
+.shipCore{
+
+    position:absolute;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+    width:30px;
+    height:50px;
+
+    border-radius:20px 20px 5px 5px;
 
     background:
     linear-gradient(
-        to bottom,
-        #0f172a,
-        #020617
+    white,
+    #00e5ff
     );
+
+    box-shadow:
+    0 0 20px #00e5ff;
+}
+
+/* Wings */
+
+.shipWing{
+
+    position:absolute;
+
+    bottom:0;
+
+    width:25px;
+    height:25px;
+
+    background:#00e5ff;
+
+    box-shadow:
+    0 0 15px #00e5ff;
+}
+
+.leftWing{
+
+    left:5px;
+
+    clip-path:
+    polygon(
+    100% 0,
+    0 100%,
+    100% 100%
+    );
+}
+
+.rightWing{
+
+    right:5px;
+
+    clip-path:
+    polygon(
+    0 0,
+    0 100%,
+    100% 100%
+    );
+}
+
+/* =========================
+   ITEMS
+========================= */
+
+.star,
+.diamond,
+.bomb,
+.heart{
+
+    position:absolute;
+
+    font-size:34px;
+
+    user-select:none;
+}
+
+.star{
+    filter:
+    drop-shadow(0 0 12px gold);
+}
+
+.diamond{
+    filter:
+    drop-shadow(0 0 12px cyan);
+}
+
+.bomb{
+    filter:
+    drop-shadow(0 0 12px red);
+}
+
+.heart{
+    filter:
+    drop-shadow(0 0 12px hotpink);
 }
 
 /* =========================
@@ -161,18 +311,18 @@ button:hover{
 ========================= */
 
 .bgStar{
+
     position:absolute;
 
     width:3px;
     height:3px;
 
-    background:white;
-
     border-radius:50%;
 
-    opacity:.8;
+    background:white;
 
-    animation:twinkle 2s infinite;
+    animation:
+    twinkle 2s infinite;
 }
 
 @keyframes twinkle{
@@ -191,78 +341,13 @@ button:hover{
 }
 
 /* =========================
-   PLAYER
-========================= */
-
-#player{
-
-    position:absolute;
-
-    bottom:30px;
-
-    width:90px;
-    height:24px;
-
-    border-radius:30px;
-
-    background:
-    linear-gradient(
-        90deg,
-        #00ff88,
-        #00e5ff
-    );
-
-    box-shadow:
-    0 0 10px #00ff88,
-    0 0 20px #00ff88,
-    0 0 40px #00ff88;
-
-    transition:none;
-}
-
-/* =========================
-   FALLING OBJECTS
-========================= */
-
-.star,
-.diamond,
-.bomb,
-.heart{
-
-    position:absolute;
-
-    font-size:32px;
-
-    user-select:none;
-}
-
-.star{
-    filter:
-    drop-shadow(0 0 10px gold);
-}
-
-.diamond{
-    filter:
-    drop-shadow(0 0 10px cyan);
-}
-
-.bomb{
-    filter:
-    drop-shadow(0 0 10px red);
-}
-
-.heart{
-    filter:
-    drop-shadow(0 0 10px hotpink);
-}
-
-/* =========================
    OVERLAYS
 ========================= */
 
 .overlay{
 
     position:fixed;
+
     inset:0;
 
     display:none;
@@ -271,70 +356,75 @@ button:hover{
     align-items:center;
     flex-direction:column;
 
-    background:rgba(0,0,0,.85);
+    background:
+    rgba(0,0,0,.85);
 
     z-index:999;
 }
 
 .overlay h1{
 
-    font-size:4rem;
+    font-size:3rem;
 
-    margin-bottom:20px;
-
-    text-shadow:
-    0 0 15px white;
-}
-
-.overlay p{
-    font-size:1.3rem;
-    margin-bottom:20px;
-}
-
-.gameOverCredit{
-    margin-top:20px;
-    color:#00e5ff;
+    margin-bottom:15px;
 }
 
 /* =========================
-   SCORE POP EFFECT
+   MOBILE CONTROLS
 ========================= */
 
-.scorePop{
-    animation:pop .25s ease;
+#mobileControls{
+
+    position:fixed;
+
+    bottom:20px;
+
+    left:50%;
+
+    transform:
+    translateX(-50%);
+
+    display:flex;
+
+    gap:25px;
+
+    z-index:900;
 }
 
-@keyframes pop{
+#mobileControls button{
 
-    0%{
-        transform:scale(1);
-    }
+    width:70px;
+    height:70px;
 
-    50%{
-        transform:scale(1.4);
-    }
+    border-radius:50%;
 
-    100%{
-        transform:scale(1);
+    font-size:28px;
+}
+
+/* Desktop par hide */
+
+@media(min-width:769px){
+
+    #mobileControls{
+        display:none;
     }
 }
 
 /* =========================
-   FOOTER CREDIT
+   CREDIT
 ========================= */
 
 #credit{
 
     position:fixed;
 
-    right:15px;
+    right:10px;
+
     bottom:10px;
 
     color:#00e5ff;
 
     font-size:14px;
-
-    opacity:.8;
 
     z-index:600;
 }
@@ -346,12 +436,35 @@ button:hover{
 @media(max-width:768px){
 
     .screen h1{
-        font-size:2.2rem;
+        font-size:2rem;
     }
 
     #hud{
-        flex-wrap:wrap;
+
         width:95%;
+
+        flex-wrap:wrap;
+
         justify-content:center;
+    }
+
+    .hudBox{
+
+        padding:10px 12px;
+
+        font-size:14px;
+    }
+
+    #player{
+
+        width:70px;
+        height:45px;
+
+        bottom:120px;
+    }
+
+    #credit{
+
+        font-size:12px;
     }
 }

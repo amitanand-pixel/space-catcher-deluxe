@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🚀 Space Catcher Deluxe</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Start Screen -->
+    <div id="startScreen" class="screen">
+        <h1>🚀 Space Catcher Deluxe</h1>
+
+        <p>
+            Catch ⭐ Stars and 💎 Diamonds
+            <br>
+            Avoid 💣 Bombs
+            <br>
+            Collect ❤️ Hearts
+        </p>
+
+        <button id="startBtn">START GAME</button>
+
+        <div class="controls">
+            <h3>Controls</h3>
+            <p>⬅ Left Arrow</p>
+            <p>➡ Right Arrow</p>
+            <p>P = Pause</p>
+        </div>
+    </div>
+
+    <!-- HUD -->
+    <div id="hud">
+
+        <div class="hudBox">
+            Score:
+            <span id="score">0</span>
+        </div>
+
+        <div class="hudBox">
+            High Score:
+            <span id="highScore">0</span>
+        </div>
+
+        <div class="hudBox">
+            Lives:
+            <span id="lives">3</span>
+        </div>
+
+        <div class="hudBox">
+            Level:
+            <span id="level">1</span>
+        </div>
+
+    </div>
+
+    <!-- Game Area -->
+    <div id="game">
+
+        <!-- Player -->
+        <div id="player"></div>
+
+    </div>
+
+    <!-- Pause Screen -->
+    <div id="pauseScreen" class="overlay">
+        <h1>⏸ PAUSED</h1>
+        <p>Press P to Resume</p>
+    </div>
+
+    <!-- Game Over Screen -->
+    <div id="gameOverScreen" class="overlay">
+
+        <h1>💀 GAME OVER</h1>
+
+        <p>
+            Final Score:
+            <span id="finalScore">0</span>
+        </p>
+
+        <button id="restartBtn">
+            PLAY AGAIN
+        </button>
+
+    </div>
+
+    <!-- Mobile Controls (future use) -->
+    <div id="mobileControls">
+
+        <button id="leftBtn">⬅</button>
+
+        <button id="rightBtn">➡</button>
+
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
